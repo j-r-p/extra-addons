@@ -11,6 +11,7 @@
     "license": "LGPL-3",
     "application": False,
     "installable": True,
+    'auto_install': True,
     "depends": [
         "portal",
     ],

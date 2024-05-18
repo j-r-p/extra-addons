@@ -8,6 +8,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
+    'auto_install': True,
     "depends": [
         "hr_expense",
     ],
