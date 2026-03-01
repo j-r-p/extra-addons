@@ -7,9 +7,8 @@
     'author': 'Custom',
     'category': 'Website',
     'depends': ['website'],
-    'data': [
-        'views/seo_metadata_views.xml',
-    ],
+    'data': [],
+
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

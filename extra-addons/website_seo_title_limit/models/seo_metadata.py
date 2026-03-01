@@ -31,3 +31,15 @@ class WebsiteSeoMetadata(models.AbstractModel):
                     _('SEO Meta Title cannot exceed 160 characters (current length: %d)')
                     % len(record.website_meta_title)
                 )
+
+    @api.onchange('website_meta_title')
+    def _onchange_meta_title(self):
+        if self.website_meta_title and len(self.website_meta_title) > 160:
+            # trim the value and warn the user in the form
+            self.website_meta_title = self.website_meta_title[:160]
+            return {
+                'warning': {
+                    'title': _('Maximum length reached'),
+                    'message': _('SEO Meta Title has been truncated to 160 characters.'),
+                }
+            }
