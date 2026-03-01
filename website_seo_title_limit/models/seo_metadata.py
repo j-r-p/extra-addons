@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import fields, models, api, _
+from odoo.exceptions import ValidationError
 
 
 class WebsiteSeoMetadata(models.AbstractModel):
@@ -21,3 +22,12 @@ class WebsiteSeoMetadata(models.AbstractModel):
         size=160,
         help='SEO title shown on the website. Limited to 160 characters.',
     )
+
+    @api.constrains('website_meta_title')
+    def _check_meta_title_length(self):
+        for record in self:
+            if record.website_meta_title and len(record.website_meta_title) > 160:
+                raise ValidationError(
+                    _('SEO Meta Title cannot exceed 160 characters (current length: %d)')
+                    % len(record.website_meta_title)
+                )

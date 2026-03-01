@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Add explicit maxlength on the meta title field so the web client will
+        prevent excessive characters while typing.  A server-side constraint
+        is also defined in the model to ensure the limit is enforced when
+        values are written by other means (import, API, etc.).
+    -->
+    <record id="view_website_seo_metadata_form_limit" model="ir.ui.view">
+        <field name="name">website.seo.metadata.form.limit</field>
+        <field name="model">website.seo.metadata</field>
+        <!-- inherit the standard SEO metadata form view from website -->
+        <field name="inherit_id" ref="website.view_website_meta_form"/>
+        <field name="arch" type="xml">
+            <field name="website_meta_title" position="attributes">
+                <attribute name="options">{'maxlength': 160}</attribute>
+                <attribute name="size">160</attribute>
+                <attribute name="help">
+                    SEO title shown on the website. Limited to 160 characters.
+                </attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
